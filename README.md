@@ -1,4 +1,4 @@
-# Wizkid Assessment
+# Wizkid Assessment(REST APIs)
 
 
 -------
