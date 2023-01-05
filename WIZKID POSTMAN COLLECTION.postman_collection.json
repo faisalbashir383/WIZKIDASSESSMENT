@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "99c7268f-b9c3-4ec7-9b78-60785424d22b",
+		"name": "WIZKID POSTMAN COLLECTION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17342347"
+	},
+	"item": [
+		{
+			"name": "Authentication APIs",
+			"item": [
+				{
+					"name": "Login API",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"faisalbashir353@yopmail.com\",\r\n    \"password\": \"User@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/login/"
+					},
+					"response": []
+				},
+				{
+					"name": "Register API",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"faisalbashir353@yopmail.com\",\r\n    \"password\": \"User@123\",\r\n    \"phone_no\": \"+917889626192\",\r\n    \"first_name\": \"Faisal\",\r\n    \"last_name\": \"Ahmad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/register/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recipe APIs(CRUD)",
+			"item": [
+				{
+					"name": "Get Recipes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "e43674290ffe1903deae16428cef3073340ae626"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{host}}/api/v1/recipes/"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Recipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "e43674290ffe1903deae16428cef3073340ae626"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"omlete\",\r\n    \"category\": \"meat\",\r\n    \"sub_category\": \"egg\",\r\n    \"description\": \"egg, salt, rice, spices\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{host}}/api/v1/recipes/"
+					},
+					"response": []
+				},
+				{
+					"name": "delete recipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "e43674290ffe1903deae16428cef3073340ae626"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/recipes/?recipe_id=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipes",
+								""
+							],
+							"query": [
+								{
+									"key": "recipe_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search recipe",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "e43674290ffe1903deae16428cef3073340ae626"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/recipes/?search=spices",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"recipes",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "spices"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
