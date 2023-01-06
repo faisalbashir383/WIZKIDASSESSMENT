@@ -42,14 +42,15 @@ class UserRecipeView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyA
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    def update(self, request, *args, **kwargs):
-        try:
-            kwargs['partial'] = True
-            return super(UserRecipeView, self).update(request, *args, **kwargs)
-        except Exception as e:
-            return Response(dict({
-                "error": "Ah oh, there was some issue with the backend! Please contact admin!"
-            }), status=500)
+    def put(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance:
+            serializer = RecipeAddViewSerializer(instance, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+        return Response(dict({"error": "Recipe does not exist or invalid recipe_id passed in params"}),
+                        status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
         instance = self.get_object()
