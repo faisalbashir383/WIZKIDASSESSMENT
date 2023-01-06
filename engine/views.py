@@ -1,7 +1,7 @@
 from engine.models import Recipe
 from rest_framework.response import Response
 from rest_framework import generics, status, filters
-from engine.serializers import RecipeAddViewSerializer
+from engine.serializers import RecipeAddViewSerializer, RecipeUpdateSerializer
 from engine.pagination import StandardResultsSetPagination
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -45,7 +45,7 @@ class UserRecipeView(generics.ListCreateAPIView, generics.RetrieveUpdateDestroyA
     def put(self, request, *args, **kwargs):
         instance = self.get_object()
         if instance:
-            serializer = RecipeAddViewSerializer(instance, data=request.data)
+            serializer = RecipeUpdateSerializer(instance, data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data)
